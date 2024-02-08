@@ -5,7 +5,8 @@ function App() {
   const [val, setVal] = useState(1)
   const [double, setDouble] = useState(1)
 
-  //const getDouble = useMemo(() => slowFunction(val), [val])
+  const getDouble = useMemo(() => slowFunction(val), [val])
+  //const getDouble = slowFunction(val)
   return (
     <>
     <h1>Add Number</h1>
@@ -22,7 +23,7 @@ function App() {
 
     <h1>Get Double</h1>
     <h1>{double}</h1>
-    <button onClick={() => setDouble(slowFunction(val))}>Get Double</button>
+    <button onClick={() => setDouble(getDouble)}>Get Double</button>
     </>
   )
 }
@@ -30,7 +31,7 @@ function App() {
 function slowFunction(number){
   console.log('slow function called')
 
-  for(let i=0;i<10000;i++){}
+  for(let i=0;i<10000000;i++){}
   const double = number*2
 
   return double
